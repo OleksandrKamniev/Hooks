@@ -14,7 +14,7 @@ export const Counter = () => {
             Counter
             <div className="flexDiv">
                 <div onClick={incrementCount}>+</div>
-                <div onClick={decrementCount}>- </div>
+                <div onClick={decrementCount}>-</div>
                 </div>
                 <div> {count} </div>
         </div>
