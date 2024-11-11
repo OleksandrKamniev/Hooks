@@ -3,14 +3,15 @@ import "../../App.scss";
 
 interface ToDoItemProps {
     todo: string;
-    removeToDo: () => void;
+    index: number;
+    removeToDo: (index: number) => void;
 }
 
-export const TodoItem: React.FC<ToDoItemProps> = ({ todo, removeToDo }) => {
+export const TodoItem: React.FC<ToDoItemProps> = ({ todo, index, removeToDo }) => {
     return (
         <div className="todo-item">
             <li>{todo}</li>
-            <button onClick={removeToDo}>Remove</button>
+            <button onClick={() => removeToDo(index)}>Remove</button>
         </div>
     );
 };

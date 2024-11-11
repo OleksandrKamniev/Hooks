@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from "react";
+import React, {ChangeEvent, useCallback, useState} from "react";
 import "../../App.scss";
 import { TodoItem } from "./ToDoItem";
 
@@ -11,10 +11,9 @@ export const TodoList = () => {
             setInputValue('');
         }
     };
-    const deleteItem = (indexToDelete: number) => {
-        const newTodos = items.filter((_, index) => index !== indexToDelete);
-        setItems(newTodos);
-    };
+    const deleteItem = useCallback((indexToDelete: number) => {
+        setItems((prevItems) => prevItems.filter((_, index) => index !== indexToDelete));
+    }, []);
     const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
         setInputValue(event.target.value);
     };
@@ -29,7 +28,7 @@ export const TodoList = () => {
             </div>
             <ul>
                 {items.map((item, index) => (
-                    <TodoItem key={index} todo={item} removeToDo={() => deleteItem(index)} />
+                    <TodoItem key={index} todo={item} index={index} removeToDo={deleteItem} />
                 ))}
             </ul>
         </div>
